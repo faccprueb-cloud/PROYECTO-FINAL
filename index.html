@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa & Tienda de Mascotas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="menu">
+        <h1>🐾 Spa Mascotas</h1>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Grooming</a>
+            <a href="#tienda">Tienda</a>
+            <a href="#agenda">Citas</a>
+            <a href="#personal" style="color: #ffe600;">Área Personal</a>
+        </nav>
+    </div>
+
+    <div id="inicio" class="seccion">
+        <h2>Bienvenido al Spa</h2>
+        <p>Cuidado profesional y cariño para tu mejor amigo.</p>
+    </div>
+
+    <div id="servicios" class="seccion">
+        <h2>🛁 Servicios de Grooming</h2>
+        
+        <div class="contenedor-tarjetas">
+            <div class="tarjeta">
+                <h3>Baño Rápido</h3>
+                <p>Lavado y secado express (30 min)</p>
+                <h4>50 Bs</h4>
+                <button onclick="agregarAlCarrito('Baño Rápido', 50)">Reservar</button>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Baño + Corte</h3>
+                <p>Incluye corte de raza y limpieza de oídos (60 min)</p>
+                <h4>120 Bs</h4>
+                <button onclick="agregarAlCarrito('Baño + Corte', 120)">Reservar</button>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Spa Completo</h3>
+                <p>Masaje, glándulas, corte premium y perfumado (90 min)</p>
+                <h4>180 Bs</h4>
+                <button onclick="agregarAlCarrito('Spa Completo', 180)">Reservar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tienda" class="seccion">
+        <h2>🦴 Tienda de Productos</h2>
+        
+        <div class="contenedor-tarjetas">
+            <div class="tarjeta">
+                <h3>Shampoo Avena</h3>
+                <p>Hipoalergénico para piel sensible</p>
+                <h4>45 Bs</h4>
+                <button onclick="agregarAlCarrito('Shampoo Avena', 45)">Comprar</button>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Juguete Hueso</h3>
+                <p>Goma resistente para mordidas fuertes</p>
+                <h4>25 Bs</h4>
+                <button onclick="agregarAlCarrito('Juguete Hueso', 25)">Comprar</button>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Correa Retráctil</h3>
+                <p>Extensible hasta 3 metros</p>
+                <h4>80 Bs</h4>
+                <button onclick="agregarAlCarrito('Correa', 80)">Comprar</button>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Snacks de Carne</h3>
+                <p>Paquete de premios naturales</p>
+                <h4>30 Bs</h4>
+                <button onclick="agregarAlCarrito('Snacks', 30)">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="agenda" class="seccion">
+        <h2>📅 Agendar Cita</h2>
+        <form onsubmit="guardarCita(); return false;" class="formulario-publico">
+            <label>Tu Nombre y Mascota:</label>
+            <input type="text" id="nombreCliente" required placeholder="Ej: Juan y Firulais">
+            
+            <label>Elige Groomer (Peluquero):</label>
+            <select id="selectGroomer">
+                <option value="Ana">Ana (Especialista Gatos)</option>
+                <option value="Carlos">Carlos (Perros Grandes)</option>
+                <option value="Luisa">Luisa (Estética Canina)</option>
+            </select>
+
+            <label>Fecha:</label>
+            <input type="date" required>
+
+            <button type="submit">Confirmar Reserva</button>
+        </form>
+    </div>
+
+    <div id="personal" class="seccion-contenedor">
+        <h2 style="text-align: center; color: #333;">🔒 Gestión Interna (Groomers)</h2>
+        
+        <div class="ficha-card">
+            <h3 style="color: #444; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0;">
+                📄 Ficha de Servicio
+            </h3>
+            <p style="font-size: 0.9em; color: gray;">Uso exclusivo del personal en tablet.</p>
+
+            <label>Mascota Atendida:</label>
+            <input type="text" id="fichaMascota" class="input-bonito" placeholder="Nombre del perro...">
+
+            <div class="grupo-check">
+                <strong>Estado Inicial:</strong><br>
+                <label><input type="checkbox" id="chkNudos"> Nudos</label>
+                <label><input type="checkbox" id="chkPulgas"> Pulgas</label>
+                <label><input type="checkbox" id="chkHeridas"> Heridas</label>
+            </div>
+
+            <div class="grupo-check">
+                <strong>Servicios Realizados:</strong><br>
+                <label><input type="checkbox" id="servBanio"> Baño</label>
+                <label><input type="checkbox" id="servCorte"> Corte</label>
+                <label><input type="checkbox" id="servUnas"> Uñas</label>
+                <label><input type="checkbox" id="servOidos"> Oídos</label>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <strong>Evidencia (Foto Antes/Después):</strong><br>
+                <input type="file" style="margin-top: 5px;">
+            </div>
+
+            <label>Observaciones:</label>
+            <textarea id="fichaObs" class="input-bonito" rows="2" placeholder="Notas del servicio..."></textarea>
+
+            <button onclick="guardarFicha()" class="btn-guardar">💾 Guardar Ficha en Historial</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
+            <button onclick="verReporte()" style="background: #68819b; padding: 12px 25px;">📊 Ver Reportes del Día</button>
+        </div>
+    </div>
+
+    <div class="carrito-flotante">
+        <span>🛒 Total: <b id="totalDinero">0</b> Bs</span>
+        <button onclick="verCarrito()" class="btn-gris">Ver Lista</button>
+        <button onclick="pedirWhatsapp()" class="btn-ws">Pedir por WhatsApp</button>
+        <button onclick="borrarCarrito()" class="btn-rojo">X</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
